@@ -326,7 +326,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
 
   Timer? _blinkDebounce;
 
-  TextStyle get _textStyle => TextStyle(
+  TextStyle get _textStyle => const TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ).merge(widget.textStyle);
@@ -362,7 +362,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
     _hasBlinked = true;
 
     _cursorController = AnimationController(
-        duration: Duration(milliseconds: 1000), vsync: this);
+        duration: const Duration(milliseconds: 1000), vsync: this);
     _cursorAnimation = Tween<double>(
       begin: 1,
       end: 0,
@@ -483,7 +483,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
             currentText = currentText.substring(0, widget.length);
           }
           //  delay the onComplete event handler to give the onChange event handler enough time to complete
-          Future.delayed(Duration(milliseconds: 300),
+          Future.delayed(const Duration(milliseconds: 300),
               () => widget.onCompleted!(currentText));
         }
 
@@ -778,6 +778,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
           textInputAction: widget.textInputAction,
           controller: _textEditingController,
           focusNode: _focusNode,
+          onChanged: (value) {},
           enabled: widget.enabled,
           autofillHints: widget.enablePinAutofill && widget.enabled
               ? <String>[AutofillHints.oneTimeCode]
@@ -789,7 +790,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
           textCapitalization: widget.textCapitalization,
           validator: widget.validator,
           onSaved: widget.onSaved,
-          autovalidateMode: widget.autovalidateMode,
+          // autovalidateMode: widget.autovalidateMode,
           inputFormatters: [
             ...widget.inputFormatters,
             LengthLimitingTextInputFormatter(
@@ -803,17 +804,18 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
           showCursor: false,
           // using same as background color so tha it can blend into the view
           cursorWidth: 0.01,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(0),
+          decoration: const InputDecoration(
+            contentPadding: EdgeInsets.all(0),
+            filled: true,
             border: InputBorder.none,
-            fillColor: widget.backgroundColor,
+            fillColor: Color(0XFFFFFBE6),
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
             disabledBorder: InputBorder.none,
             errorBorder: InputBorder.none,
             focusedErrorBorder: InputBorder.none,
           ),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.transparent,
             height: .01,
             fontSize: kIsWeb
