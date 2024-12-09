@@ -804,11 +804,11 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
           showCursor: false,
           // using same as background color so tha it can blend into the view
           cursorWidth: 0.01,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             contentPadding: EdgeInsets.all(0),
             filled: true,
             border: InputBorder.none,
-            fillColor: Color(0XFFFFFBE6),
+            fillColor: widget.backgroundColor,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
             disabledBorder: InputBorder.none,
